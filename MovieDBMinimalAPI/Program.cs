@@ -42,11 +42,12 @@ namespace MovieDBMinimalAPI
                 options.AddDefaultPolicy(policy =>
                 {
                     policy
-                        .WithOrigins("http://localhost:3000") // 👈 Your frontend URL
+                        .WithOrigins("http://localhost:3000", "https://movie-dj7e5iw1b-essmanns-projects.vercel.app")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowCredentials(); // Needed if you're using cookies
+                        .AllowCredentials();
                 });
+
             });
 
             //equivalent implementation
