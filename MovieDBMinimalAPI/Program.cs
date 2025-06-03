@@ -1,14 +1,15 @@
 ﻿
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using MovieDBMinimalAPI.Data;
+using MovieDBMinimalAPI.Models;
 using MovieDBMinimalAPI.Repository;
 using MovieDBMinimalAPI.Services;
-using MovieDBMinimalAPI.Models;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Security.Claims;
 
 namespace MovieDBMinimalAPI
 {
@@ -60,7 +61,7 @@ namespace MovieDBMinimalAPI
                 {
                     options.Cookie.Name = "MovieDB";
                     options.Cookie.SameSite = SameSiteMode.None;  // Allow cross-site cookie
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Only send over HTTPS
+                    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Only send over HTTPS
                     options.ExpireTimeSpan = TimeSpan.FromHours(8);
                     options.SlidingExpiration = true;
                 });
@@ -175,7 +176,7 @@ namespace MovieDBMinimalAPI
             });
 
             app.MapPost("/users/rating/{movieId}/{rating}", async (
-    int rating, string userId, string movieId, IFetchMoviesApi fetchApiMovies, IMovieRepository MovieRepository, HttpContext ctx) =>
+    int rating, string movieId, [FromServices] IMovieRepository MovieRepository, HttpContext ctx) =>
             {
                 if (!ctx.User.Identity.IsAuthenticated)
                 {
@@ -187,7 +188,15 @@ namespace MovieDBMinimalAPI
                 try
                 {
                     await MovieRepository.AddMovieRating(movieId, _userId, rating);
-                    return Results.Ok();
+                    var response = new
+                    {
+                        Message = "Rating successfully added to database",
+                        MovieId = movieId,
+                        UserId = _userId,
+                        Rating = rating
+                    };
+
+                    return Results.Ok(response);
                 }
                 catch (Exception ex)
                 {
