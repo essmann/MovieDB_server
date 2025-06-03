@@ -43,7 +43,7 @@ namespace MovieDBMinimalAPI
                 options.AddDefaultPolicy(policy =>
                 {
                     policy
-                        .WithOrigins("http://localhost:3000", "https://movie-dj7e5iw1b-essmanns-projects.vercel.app")
+                        .WithOrigins("http://localhost:3000", "https://movie-db-ten-tawny.vercel.app")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
