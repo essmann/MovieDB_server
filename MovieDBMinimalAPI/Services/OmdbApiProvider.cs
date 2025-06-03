@@ -22,7 +22,7 @@ namespace MovieDBMinimalAPI.Services
         {
             _httpClient = httpClient;
             _context = context;
-            apiKey = configuration["API_KEY"];
+            apiKey = configuration["ApiKey"];
             fullApiUrl  = $"{baseApiUrl}?apikey={apiKey}";
         }
         
