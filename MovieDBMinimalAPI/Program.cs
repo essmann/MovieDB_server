@@ -27,7 +27,7 @@ namespace MovieDBMinimalAPI
             builder.Services.AddSwaggerGen();
 
             //Authentication setup
-            builder.Services.AddAuthorization();
+           
            
 
             // DI setup
@@ -78,6 +78,7 @@ namespace MovieDBMinimalAPI
             app.UseCors();
             //app.UseHttpsRedirection();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             //Authentication endpoints
             app.MapGet("/", () => "Hello from MovieDB API!");
