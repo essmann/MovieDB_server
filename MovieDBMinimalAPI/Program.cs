@@ -8,6 +8,7 @@ using MovieDBMinimalAPI.Data;
 using MovieDBMinimalAPI.Repository;
 using MovieDBMinimalAPI.Services;
 using MovieDBMinimalAPI.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace MovieDBMinimalAPI
 {
@@ -67,20 +68,19 @@ namespace MovieDBMinimalAPI
             builder.WebHost.UseUrls("http://0.0.0.0:80");
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseCors();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseAuthorization();
-
 
             //Authentication endpoints
-
+            app.MapGet("/", () => "Hello from MovieDB API!");
             app.MapPost("/login", async (HttpContext ctx, IUserRepository userRepository) =>
             {
 
