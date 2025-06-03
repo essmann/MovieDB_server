@@ -175,6 +175,20 @@ namespace MovieDBMinimalAPI
 
             });
 
+            app.MapGet("/users/ratings", async ([FromServices] IMovieRepository movieRepository, HttpContext ctx) =>
+{
+                if (!ctx.User.Identity.IsAuthenticated)
+                {
+                    return Results.Unauthorized(); // 401
+                }
+                var userId = ctx.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null) return Results.Unauthorized();
+
+                var movieList = await movieRepository.GetAllRatedMovies(userId);
+                return Results.Ok(movieList);
+});
+
+
             app.MapPost("/users/rating/{movieId}/{rating}", async (
     int rating, string movieId, [FromServices] IMovieRepository MovieRepository, HttpContext ctx) =>
             {
