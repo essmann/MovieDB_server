@@ -5,6 +5,11 @@ using MovieDBMinimalAPI.Models;
 
 namespace MovieDBMinimalAPI.Services
 {
+    public class RatedMovieDto
+    {
+        public required Movie Movie { get; set; }
+        public required double YourRating { get; set; }
+    }
     public class OmdbApiProvider : IMovieApiProvider
     {
         private const string baseApiUrl = "http://www.omdbapi.com/";
