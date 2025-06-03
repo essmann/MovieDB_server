@@ -56,14 +56,14 @@ namespace MovieDBMinimalAPI
 
 
             builder.Services.AddAuthentication()
-              .AddCookie("cookie", (o) =>
-              {
-
-                  o.Cookie.Name = "MovieDB";
-                  o.ExpireTimeSpan = TimeSpan.FromHours(8);
-                  o.SlidingExpiration = true;
-
-              });
+                .AddCookie("cookie", options =>
+                {
+                    options.Cookie.Name = "MovieDB";
+                    options.Cookie.SameSite = SameSiteMode.None;  // Allow cross-site cookie
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;  // Only send over HTTPS
+                    options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                    options.SlidingExpiration = true;
+                });
 
             builder.WebHost.UseUrls("http://0.0.0.0:80");
             var app = builder.Build();
