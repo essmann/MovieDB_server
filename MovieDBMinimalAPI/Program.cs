@@ -104,14 +104,14 @@ namespace MovieDBMinimalAPI
                 }
 
                 //Check if User exists in database, if not, register the user.
-                //var userExists = await userRepository.UserExistsAsync(payload.Subject);
-                //if (!userExists)
-                //{
-                //    DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-                //    await userRepository.UserAddAsync(payload.Subject, payload.Email, today, payload.Name);
-                //}
-                    // Create claims from payload
-                    var claims = new List<Claim>
+                var userExists = await userRepository.UserExistsAsync(payload.Subject);
+                if (!userExists)
+                {
+                    DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+                    await userRepository.UserAddAsync(payload.Subject, payload.Email, today, payload.Name);
+                }
+                // Create claims from payload
+                var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.NameIdentifier, payload.Subject),
                         new Claim(ClaimTypes.Email, payload.Email),
