@@ -153,10 +153,12 @@ namespace MovieDBMinimalAPI
             });
             //Movie endpoints
 
-            app.MapGet("/movies/{id}", async (string id, IMovieApiProvider apiProvider) => //Program injects the correct fetchApiMovies implementation
+            app.MapGet("/movies/{id}", async (string id, IMovieApiProvider apiProvider, IMovieRepository movieRepository, HttpContext ctx) => //Program injects the correct fetchApiMovies implementation
             //via the builder.services.add thing
             {
+                
                 var response = await apiProvider.GetMovieByIdAsync(id);
+
                 return response;
             });
 
