@@ -9,6 +9,7 @@ namespace MovieDBMinimalAPI.Services
     {
         public required Movie Movie { get; set; }
         public required double YourRating { get; set; }
+        public required DateOnly DateRated { get; set; }
     }
     public class OmdbApiProvider : IMovieApiProvider
     {

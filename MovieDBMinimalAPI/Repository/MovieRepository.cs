@@ -53,12 +53,14 @@ namespace MovieDBMinimalAPI.Repository
             if (!movieAlreadyRated)
             {
                 string id = Guid.NewGuid().ToString();
+                DateOnly dateRated = DateOnly.FromDateTime(DateTime.Now);
                 var newRating = new RatedMovie
                 {
                     RatingId = id,
                     MovieId = movieId,
                     UserId = userId,
-                    Rating = rating
+                    Rating = rating,
+                    RatedAt = dateRated,
                 };
                 _context.RatedMovies.Add(newRating);
                 

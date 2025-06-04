@@ -1,4 +1,4 @@
-﻿namespace MovieDBMinimalAPI.Models
+﻿namespace MovieDBMinimalAPI.DTO
 {
     public class GoogleLoginRequest
     {

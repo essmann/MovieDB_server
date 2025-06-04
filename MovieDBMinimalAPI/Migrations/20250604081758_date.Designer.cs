@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDBMinimalAPI.Data;
 
@@ -11,9 +12,11 @@ using MovieDBMinimalAPI.Data;
 namespace MovieDBMinimalAPI.Migrations
 {
     [DbContext(typeof(DbApplicationContext))]
-    partial class DbApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250604081758_date")]
+    partial class date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,7 +214,7 @@ namespace MovieDBMinimalAPI.Migrations
                     b.Property<string>("WatchlistId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateOnly>("AddedAt")
+                    b.Property<DateOnly>("AddeddAt")
                         .HasColumnType("date");
 
                     b.Property<string>("MovieId")
