@@ -29,8 +29,8 @@ namespace MovieDBMinimalAPI
             builder.Services.AddSwaggerGen();
 
             //Authentication setup
-           
-           
+
+
 
             // DI setup
             builder.Services.AddScoped<FetchApiMovies>();
@@ -40,7 +40,7 @@ namespace MovieDBMinimalAPI
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddHttpClient<OmdbApiProvider>();
             builder.Services.AddLogging();
-
+            
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
@@ -68,7 +68,7 @@ namespace MovieDBMinimalAPI
                     options.SlidingExpiration = true;
                 });
 
-            
+
             var app = builder.Build();
 
             //if (app.Environment.IsDevelopment())
@@ -103,12 +103,13 @@ namespace MovieDBMinimalAPI
             app.MapAuthEndpoints();
             app.MapUserEndpoints();
             app.MapMovieEndpoints();
-            
+
 
             //Authentication endpoints
             app.MapGet("/", () => "Hello from MovieDB API!");
-            
-            app.MapGet("/profile", async (HttpContext ctx) => {
+
+            app.MapGet("/profile", async (HttpContext ctx) =>
+            {
 
                 if (!ctx.User.Identity.IsAuthenticated)
                 {
@@ -129,13 +130,13 @@ namespace MovieDBMinimalAPI
             });
             //Movie endpoints
 
-           
-          
-            
+
+
+
             //this takes a mandatory query parameter of search. so ?search=something
 
             app.Run();
-            
+
         }
     }
 }
