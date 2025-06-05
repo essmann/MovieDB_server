@@ -1,4 +1,4 @@
-﻿using MovieDBMinimalAPI.Models;
+﻿using MovieDBMinimalAPI.Features.Movies.Models;
 
 namespace MovieDBMinimalAPI.Services
 {

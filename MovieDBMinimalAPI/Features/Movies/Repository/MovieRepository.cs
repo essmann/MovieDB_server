@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieDBMinimalAPI.Data;
-using MovieDBMinimalAPI.Models;
+using MovieDBMinimalAPI.Features.Movies.Models;
+using MovieDBMinimalAPI.Features.Movies.Repository;
 
 namespace MovieDBMinimalAPI.Repository
 {
@@ -95,5 +96,14 @@ namespace MovieDBMinimalAPI.Repository
         {
             await _context.SaveChangesAsync();
         }
+        public async Task<RatedMovie> UserHasRatedMovieAsync(string movieId, string userId) {
+
+            return await _context.RatedMovies.FirstOrDefaultAsync(rm => rm.MovieId == movieId && rm.UserId == userId);
+        }
+        public async Task<WatchlistMovie> UserHasAddedMovieToWatchlistAsync(string movieId, string userId)
+        {
+            return await _context.WatchlistMovies.FirstOrDefaultAsync(wm => wm.MovieId == movieId && wm.UserId == userId);
+        }
+
     }
 }

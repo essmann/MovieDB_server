@@ -1,12 +1,14 @@
 ﻿using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using MovieDBMinimalAPI.DTO;
+
 using MovieDBMinimalAPI.Repository;
 using MovieDBMinimalAPI.Services;
 using System.Security.Claims;
 
-namespace MovieDBMinimalAPI.Endpoints
+using MovieDBMinimalAPI.Features.Auth.DTO;
+using MovieDBMinimalAPI.Features.Users.Services;
+namespace MovieDBMinimalAPI.Features.Auth.Endpoints
 {
     public static class AuthEndpoint
     {

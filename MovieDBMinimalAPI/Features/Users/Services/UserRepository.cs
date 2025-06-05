@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using MovieDBMinimalAPI.Data;
-using MovieDBMinimalAPI.Models;
-namespace MovieDBMinimalAPI.Repository
+using MovieDBMinimalAPI.Features.Users.Models;
+namespace MovieDBMinimalAPI.Features.Users.Services
 {
     public class UserRepository : IUserRepository
     {

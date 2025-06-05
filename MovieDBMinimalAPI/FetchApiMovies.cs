@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
-using MovieDBMinimalAPI.Models;
+using MovieDBMinimalAPI.Features.Movies.Models;
+
 namespace MovieDBMinimalAPI
 {
    

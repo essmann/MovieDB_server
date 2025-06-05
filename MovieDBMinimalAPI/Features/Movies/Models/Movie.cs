@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using MovieDBMinimalAPI.Features.Movies.DTO;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MovieDBMinimalAPI.Models
+namespace MovieDBMinimalAPI.Features.Movies.Models
 {
     public class Movie
     {
@@ -30,7 +33,8 @@ namespace MovieDBMinimalAPI.Models
         public string? Production { get; set; }
         public string? Website { get; set; }
         public string? Response { get; set; }
+
+        [NotMapped]
+        public UserDataDto? UserData { get; set; }
     }
-
-
 }

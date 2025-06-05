@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text.Json;
 using MovieDBMinimalAPI.Data;
-using MovieDBMinimalAPI.Models;
+using MovieDBMinimalAPI.Features.Movies.Models;
 
 namespace MovieDBMinimalAPI.Services
 {

@@ -1,4 +1,4 @@
-﻿namespace MovieDBMinimalAPI.Repository
+﻿namespace MovieDBMinimalAPI.Features.Users.Services
 {
     public interface IUserRepository
     {

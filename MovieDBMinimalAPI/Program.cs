@@ -6,8 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using MovieDBMinimalAPI.Data;
-using MovieDBMinimalAPI.DTO;
-using MovieDBMinimalAPI.Endpoints;
+using MovieDBMinimalAPI.Features.Auth.DTO;
+using MovieDBMinimalAPI.Features.Auth.Endpoints;
+
+using MovieDBMinimalAPI.Features.Movies.Endpoints;
+using MovieDBMinimalAPI.Features.Movies.Repository;
+using MovieDBMinimalAPI.Features.Users.Services;
 using MovieDBMinimalAPI.Repository;
 using MovieDBMinimalAPI.Services;
 using System.Security.Claims;
@@ -37,7 +41,6 @@ namespace MovieDBMinimalAPI
             builder.Services.AddScoped<IMovieApiProvider, OmdbApiProvider>();
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddHttpClient<OmdbApiProvider>();
             builder.Services.AddLogging();
             
@@ -101,7 +104,7 @@ namespace MovieDBMinimalAPI
 
             //mapping our endpoint files to actual endpoints in the app            
             app.MapAuthEndpoints();
-            app.MapUserEndpoints();
+            //app.MapUserEndpoints();
             app.MapMovieEndpoints();
 
 
