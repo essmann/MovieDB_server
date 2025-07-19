@@ -1,0 +1,6 @@
+@MovieDBMinimalAPI_HostAddress = http://localhost:5166
+
+GET {{MovieDBMinimalAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
